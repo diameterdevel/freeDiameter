@@ -124,7 +124,7 @@ int fd_os_is_valid_DiameterIdentity(uint8_t * os, size_t ossz)
 			continue;
 		if ((os[i] >= 'A') && (os[i] <= 'Z'))
 			continue;
-		if ((os[i] == '-') || (os[i] == '.'))
+		if ((os[i] == '-') || (os[i] == '.') || (os[i] == ':'))
 			continue;
 		if ((os[i] >= '0') && (os[i] <= '9'))
 			continue;
