@@ -234,8 +234,9 @@ static int add_CE_info(struct msg *msg, struct cnxctx * cnx, int isi_tls, int is
 			CHECK_FCT( fd_dict_search( fd_g_config->cnf_dict, DICT_AVP, AVP_BY_NAME, "Supported-Vendor-Id", &dictobj, ENOENT )  );
 			
 			while (array[i] != 0) {
-				CHECK_FCT( fd_msg_avp_new ( dictobj, 0, &avp ) );
 				val.u32 = array[i];
+				if(MY_VENDOR_ID == val.u32) {++i;  continue; }
+				CHECK_FCT( fd_msg_avp_new ( dictobj, 0, &avp ) );
 				CHECK_FCT( fd_msg_avp_setvalue( avp, &val ) );
 				CHECK_FCT( fd_msg_avp_add( msg, MSG_BRW_LAST_CHILD, avp ) );
 				i++;
